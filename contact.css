@@ -1,0 +1,145 @@
+/* Setting the default font for the entire page */
+body {
+    font-family: 'Inter', sans-serif; /* clean body */
+    background-color: #F8FAFC;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* bold headings */
+    font-weight: 600;
+  }
+
+/* NEW color variables from the provided image */
+:root {
+    --brand-darkest: #2f4770;
+    --brand-dark: #34658d;
+    --brand-primary: #018ABE;
+    --brand-light: #97CADB;
+    --brand-lightest: #D6E8EE;
+}
+header {
+    background: linear-gradient(to right, var(--brand-darkest), var(--brand-primary));
+}
+header.scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+/* Extending Tailwind's color palette */
+.bg-brand-darkest { background-color: var(--brand-darkest); }
+.bg-brand-dark { background-color: var(--brand-dark); }
+.bg-brand-primary { background-color: var(--brand-primary); }
+.bg-brand-light { background-color: var(--brand-light); }
+.bg-brand-lightest { background-color: var(--brand-lightest); }
+
+.text-brand-darkest { color: var(--brand-darkest); }
+.text-brand-dark { color: var(--brand-dark); }
+.text-brand-primary { color: var(--brand-primary); }
+.text-brand-light { color: var(--brand-light); }
+
+.border-brand-primary { border-color: var(--brand-primary); }
+
+/* Styles for the fade-in-on-scroll animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Gradient background for the hero section */
+.hero-gradient {
+  position: relative;
+  background: linear-gradient(135deg, #c9e9f5 80%, var(--brand-lightest) 100%);
+  overflow: hidden; /* to hide the floating line overflow */
+}
+
+.hero-gradient::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: floating-line 5s linear infinite;
+}
+
+@keyframes floating-line {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+
+
+/* Frosted Glass Effect */
+.frosted-glass {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Added for smooth hover transition */
+}
+
+/* --- NEW HOVER EFFECTS --- */
+
+/* Add a more pronounced shadow and border to frosted glass cards on hover */
+.frosted-glass:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 27, 72, 0.1), 0 10px 10px -5px rgba(0, 27, 72, 0.04);
+    border-color: var(--brand-light);
+}
+
+/* Add a subtle scale effect to footer social icons on hover */
+footer a svg {
+    transition: transform 0.3s ease;
+}
+
+footer a:hover svg {
+    transform: scale(1.2);
+}
+
+/* Add a subtle underline effect for navigation links in the header */
+header nav a {
+    position: relative;
+    text-decoration: none;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+header nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Exclude the button from the nav link underline effect */
+header nav a.bg-brand-primary::after {
+    display: none;
+}
+
+/* --- STYLES FOR CONTACT PAGE FORM --- */
+.form-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(151, 202, 219, 0.5);
+    border-color: var(--brand-primary);
+}

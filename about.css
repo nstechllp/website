@@ -1,0 +1,312 @@
+/* Setting the default font for the entire page */
+body {
+    font-family: 'Inter', sans-serif; /* clean body */
+    background-color: #F8FAFC;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* bold headings */
+    font-weight: 600;
+  }
+
+/* Color variables */
+:root {
+    --brand-darkest: #2f4770;
+    --brand-dark: #34658d;
+    --brand-primary: #018ABE;
+    --brand-light: #97CADB;
+    --brand-lightest: #D6E8EE;
+}
+
+
+/* Base Header styles */
+header {
+    background: linear-gradient(to right, var(--brand-darkest), var(--brand-primary));
+}
+header.scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+/* --- ENHANCEMENT: Animated Underline for Section Titles --- */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--tw-color-brand-primary);
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.section-title.visible::after {
+    transform: scaleX(1);
+}
+
+/* Navigation link underline effect */
+header nav a {
+    position: relative;
+    text-decoration: none;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+header nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Exclude the button from the nav link underline effect */
+header nav a.bg-brand-primary::after {
+    display: none;
+}
+
+/* --- NEW: Hero Text Animation Styles --- */
+.hero-gradient {
+  position: relative;
+  background: linear-gradient(135deg, #c9e9f5 80%, var(--brand-lightest) 100%);
+  overflow: hidden; /* to hide the floating line overflow */
+}
+.hero-gradient::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: floating-line 5s linear infinite;
+}
+
+@keyframes floating-line {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+
+.hero-word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+.hero-word {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.5s ease;
+}
+.hero-word.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- ENHANCEMENT: Info card hover effect with spotlight and 3D tilt --- */
+.info-card {
+    position: relative; /* Required for spotlight pseudo-element */
+    overflow: hidden;   /* Required for spotlight pseudo-element */
+    transition: transform 0.2s ease-out, box-shadow 0.3s ease-out;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+}
+
+/* Global Container (Adjusted for consistency) */
+.container {
+  max-width: 1200px;  
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Corresponds to px-6 in Tailwind */
+}
+
+/* Novasphere Section */
+.nova-section {
+  background: #f8fbff;
+  padding: 80px 0; /* Vertical padding */
+}
+
+.nova-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #e7f3fb;
+  padding: 60px;
+  border-radius: 16px;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+  color: #004080;
+}
+
+.section-subtitle {
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 50px;
+  color: #555;
+}
+
+.nova-container h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #004080;
+}
+
+.nova-container p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: #333;
+}
+
+.content-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  gap: 40px;
+}
+
+.content-text {
+  flex: 1.2;
+}
+
+.content-image {
+  flex: 1;
+  text-align: center;
+}
+
+.content-image img {
+  max-width: 350px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .nova-container {
+    padding: 40px;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+  }
+
+  .nova-container h2 {
+    font-size: 24px;
+  }
+
+  .nova-container p {
+    font-size: 16px;
+  }
+
+  .content-block {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Reverse column order for specific blocks on mobile if needed */
+  .content-block:nth-child(2), .content-block:nth-child(4) {
+      flex-direction: column-reverse;
+  }
+
+  .content-image img {
+    max-width: 260px;
+  }
+}
+
+/* Spotlight Effect */
+.info-card::before {
+    content: '';
+    position: absolute;
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(1, 138, 190, 0.15) 0%, rgba(1, 138, 190, 0) 60%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+}
+.info-card:hover::before {
+    opacity: 1;
+}
+.info-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(47, 71, 112, 0.1), 0 4px 6px -2px rgba(47, 71, 112, 0.05);
+}
+.icon {
+    transition: transform 0.3s ease-out;
+}
+.info-card:hover .icon {
+    transform: scale(1.1);
+}
+
+/* --- ENHANCEMENT: Frosted glass effect with 3D tilt --- */
+.frosted-glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+}
+.frosted-glass:hover {
+    border-color: rgba(1, 138, 190, 0.5);
+    box-shadow: 0 20px 25px -5px rgba(0, 27, 72, 0.1), 0 10px 10px -5px rgba(0, 27, 72, 0.04);
+}
+
+/* --- ENHANCEMENT: Story image parallax & zoom --- */
+.story-image {
+    transition: transform 0.4s ease-out;
+}
+.story-image-container:hover .story-image {
+     transform: scale(1.05);
+}
+
+
+/* --- Original Fade-in Animation --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Add a subtle scale effect to footer social icons on hover */
+footer a svg {
+    transition: transform 0.3s ease;
+}
+
+footer a:hover svg {
+    transform: scale(1.2);
+}
+

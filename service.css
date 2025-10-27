@@ -1,0 +1,211 @@
+/* Setting the default font for the entire page */
+body {
+    font-family: 'Inter', sans-serif; /* clean body */
+    background-color: #F8FAFC;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* bold headings */
+    font-weight: 600;
+  }
+/* Color variables */
+:root {
+    --brand-darkest: #2f4770;
+    --brand-dark: #34658d;
+    --brand-primary: #018ABE;
+    --brand-light: #97CADB;
+    --brand-lightest: #D6E8EE;
+}
+
+/* --- NEW: Scroll Progress Bar --- */
+#scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: var(--brand-primary);
+    width: 0%;
+    z-index: 100;
+    transition: width 0.1s ease-out;
+}
+
+/* Base Header styles */
+header {
+    background: linear-gradient(to right, var(--brand-darkest), var(--brand-primary));
+}
+header.scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* --- NEW: Improved readability for paragraphs --- */
+p {
+    line-height: 1.7;
+}
+
+/* Extending Tailwind's color palette */
+.bg-brand-darkest { background-color: var(--brand-darkest); }
+.bg-brand-dark { background-color: var(--brand-dark); }
+.bg-brand-primary { background-color: var(--brand-primary); }
+.bg-brand-light { background-color: var(--brand-light); }
+.bg-brand-lightest { background-color: var(--brand-lightest); }
+
+.text-brand-darkest { color: var(--brand-darkest); }
+.text-brand-dark { color: var(--brand-dark); }
+.text-brand-primary { color: var(--brand-primary); }
+.text-brand-light { color: var(--brand-light); }
+
+.border-brand-primary { border-color: var(--brand-primary); }
+
+.details-box {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.6s ease;
+}
+
+.details-box.open {
+  opacity: 1;
+  max-height: 600px; /* adjust height if needed */
+}
+/* Styles for the fade-in-on-scroll animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Gradient background for the hero section */
+.hero-gradient {
+  position: relative;
+  background: linear-gradient(135deg, #c9e9f5 80%, var(--brand-lightest) 100%);
+  overflow: hidden; /* to hide the floating line overflow */
+}
+
+.hero-gradient::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: floating-line 5s linear infinite;
+}
+
+@keyframes floating-line {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+
+
+/* --- HOVER EFFECTS & INTERACTIONS --- */
+
+/* --- NEW: Service Card Hover Effect --- */
+
+.service-card {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+    max-width: 90rem;   /* your perfect size */
+    margin-left: auto;
+    margin-right: auto;
+}
+.service-card ul li div {
+  color: #49494a; /* Tailwind's gray-600 */
+}
+
+/* --- Standardized Service Card Size --- */
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--brand-light);
+}
+
+/* --- NEW: Service Image Zoom on Hover --- */
+.service-image {
+    transition: transform 0.4s ease-out;
+    box-shadow: 0 10px 25px rgba(47, 71, 112, 0.35); 
+}
+.service-card:hover .service-image {
+    transform: scale(1.08);
+}
+.details-btn {
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.details-btn:hover {
+    background-color: var(--brand-primary);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(32, 120, 155, 0.585);
+}
+
+.cta-button {
+    transition: all 0.35s ease;
+}
+.cta-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 20px rgba(214, 232, 238, 0.6);
+}
+
+
+/* Add a subtle scale effect to footer social icons on hover */
+footer a svg {
+    transition: transform 0.3s ease;
+}
+
+footer a:hover svg {
+    transform: scale(1.2);
+}
+
+/* Subtle underline effect for navigation links */
+header nav a {
+    position: relative;
+    text-decoration: none;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+header nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Exclude the button from the nav link underline effect */
+header nav a.bg-brand-primary::after {
+    display: none;
+}
+
+/* Styles for Contact Page Form (if any) and inputs */
+.form-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(151, 202, 219, 0.5);
+    border-color: var(--brand-primary);
+}
+
+/* --- NEW: CTA button glow effect --- */
+.cta-button:hover {
+    box-shadow: 0 0 15px 3px rgba(214, 232, 238, 0.5);
+}
